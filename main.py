@@ -71,11 +71,5 @@ def message_text(event):
 
 
 if __name__ == "__main__":
-    arg_parser = ArgumentParser(
-        usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
-    )
-    arg_parser.add_argument('-p', '--port', type=int, default=8000, help='port')
-    options = arg_parser.parse_args()
-
-    httpd = wsgiref.simple_server.make_server('', options.port, application)
-    httpd.serve_forever()
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
